@@ -18,11 +18,11 @@ Bir örnekle açıkladığımız ifadeleri ayrınntılı bir şekilde ele alalı
 
 Buradaki zafiyetli web uygulamamızda bazı denemeler yaparak ilerleyelim. İki adet kullanıcı oluşturalım ve bu kullanıcıların adreslerini ekleyelim.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled.png)
 
 MDI-1 Kullanıcısı için adresini silmek istediğimizde şöyle bir request ile karşılaşmaktayız. Buradaki request yakalama ve manipüle etme işlemini de Burp Suite ile sağlamaktayız. Bu araç sayesinde tarayıcımızda gerçekleşen tüm işlemlerin ayrıntılarını görebilmekteyiz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 1.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-1.png)
 
 Buradaki request’i inceleyecek olursak; address isimli bir controller’ımızın olduğunu, delete isimli bir fonksiyonumuzun var olduğunu görebilmekteyiz. 15 değeri, silme işlemini gerçekleştiren fonksiyona bir function parametresi olarak iletilmektedir. Burada 15 dğeri de veritabanında ilgili adresin ifade ettiği id değeri olarak kabul edilebilir.
 
@@ -42,19 +42,19 @@ sehir_id
 
 Yakaladığımız bu request’te 15 değeri yerine 12 yazarsak ne olacağını inceleyelim;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 2.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-2.png)
 
 Burada gördüğünüz üzere 302 Found kodu ile cevap verildi. Uygulama arayüzüne geri geldiğimizde de bizleri bu şekilde bir mesaj karşılamaktadır;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 3.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-3.png)
 
 Uygulamamızda yer alan ifadede ise ‘Authorization Failure’ mesajı yer almaktadır. Bu mesajı görüyor olmanız veriyi silemediğiniz anlamına gelmez. Bu sebeple veriyi silip silmediğimizi tekrar kontrol etmeliyiz. Hesaptaki adresleri kontrol ettiğimizde silme işleminin gerçekleştirilemediğini görmekteyiz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 4.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-4.png)
 
 Peki eğer veritabanında bulunmayan bir id değeri girersek ne olur?
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 5.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-5.png)
 
 ```php
 
@@ -85,49 +85,49 @@ Missing Function Level Access Control (Fonksiyon Seviyesinde Yetki Kontrolü Eks
 
 Şöyle bir request üzerinden ilerleyelim;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 6.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-6.png)
 
 Buradaki request’i Burp Suite ile Intruder kısmına ilettiğimizde burada ‘delete’ olarak ifade edilen kısma farklı ifadeler koyarak sistemin bize ne gösterdiğini kontrol edelim. Çünkü bu web uygulamasında ‘delete’ fonksiyonu gibi başka fonksiyonlar da kullanılmış olabilir.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 7.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-7.png)
 
 Intruder aracılığıyla ‘delete’ ifadesi yerine başka ifadeler yazarak sistemin ne cevap verdiğini test edebiliriz. Burada fieldname’ler deneyerek ilerleyebiliriz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 8.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-8.png)
 
 İşte yaptığımız işlemler neticesinde aldığımız sonuçlar;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 9.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-9.png)
 
 Bu sonuçları incelediğimizde ‘edit’ ifadesi için alınan değerin uzunluğu diğerlerinden farklı bir uzunluktadır. 
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 10.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-10.png)
 
 Bu yüzden sistemde kontrol edip bu ifadenin bize hangi sonuçları getirdiğini görmemiz gerekmektedir;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 11.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-11.png)
 
 Burada veri olmasına rağmen intruder kısmında neden 404 verildiğini düşünmemiz gerekmektedir. Burada ilk deneme yapılırken ‘delete’ ifadesi ile adres silinmektedir ve diğer request’lerde böyle bir ifade olmadığı için hata alınmaktadır.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 12.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-12.png)
 
 Dolayısıyla burada ilk deneme için ‘delete’ ifadesi yerine karşılığı olmayan bir ifade yazarak verinin silinmesini engellemeliyiz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 13.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-13.png)
 
 Artık bu şekilde request istekleri istediğimiz gibi gelmektedir. ‘edit’ field name’i için de 200 kodunun döndüğünü görebilmekteyiz;
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 14.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-14.png)
 
 Buraya kadar olan kısımdan yapabileceğimiz bazı çıkarımlar bulunmaktadır. İncelediğimiz web uygulamasında bize ‘edit’ ile ilgili bir fonksiyon işlemi sunulmamasına rağmen bu fonksiyona erişebildik. Bu konu Missing Function Level Access Control zafiyeti olarak kabul edilmektedir.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 15.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-15.png)
 
 /address/edit/17
 
 IDOR zafiyeti ise başkasına ait verileri görebildiğimiz durumlarda geçerlidir. Örneğin ‘id’ dğeri olarak 17 ifadesi yerine 5 ifadesini koyduğumuzda başkasına ait verileri görebildiğimiz için IDOR zafiyetinin varlığından da bahsedebiliriz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 16.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-16.png)
 
 /address/edit/5
 
@@ -135,15 +135,15 @@ IDOR zafiyeti ise başkasına ait verileri görebildiğimiz durumlarda geçerlid
 
 Sipariş detayı sayfasına geldiğimizde adres bilgilerini görebilmekteyiz. Burası adresin kullanıldığı bir başka yer. Herhangi bir ürünü sepete ekleyip onu alacağımız esnada adres listedi gelmektedir.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 17.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-17.png)
 
 Peki buradaki adres ifadesi için `‘id’` değerini değiştirirsek başka bir kullanıcının adres bilgisine erişebilir miyiz?
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 18.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-18.png)
 
 Bu kısımdaki address değerini 17 yerine 18 yaparak başka bir kullanıcının adres bilgileri ile değiştirebilmekteyiz. Yani burada sipariş özelliğini kullanarak başka bir kullanıcının adres bilgisine erişebilmekteyiz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 19.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-19.png)
 
 Bu işlemin literatürdeki tam adı da **Second Order Insecure Direct Object Reference** şeklindedir. Adresi seçtiğimiz endpoint ile değiştirdiğimiz id değerini gördüğümüz kısım farklıdır çünkü. Olay tek bir request-response döngüsü içinde yaşanmamaktadır.
 
@@ -157,7 +157,7 @@ Bu konuda da developer’ların yani yazılım geliştiricilerin çok büyük 
 
 # **Bu Tür Zafiyetler Nasıl ve Neden Ortaya Çıkmaktadır ? — Mikroservis Mimarilerine Bakış**
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 20.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-20.png)
 
 [https://medium.com/@OlabodeAbesin/microservice-architecture-the-complete-guide-357bf7131cf1](https://medium.com/@OlabodeAbesin/microservice-architecture-the-complete-guide-357bf7131cf1)
 
@@ -165,25 +165,25 @@ Günümüzde şöyle bir durum bulunmaktadır. Bir e-ticaret sitesi düşünelim
 
 Bir örnek verecek olursak buradaki yapıda farklı programlama dillerinin json’ı farklı yorumlamasından dolayı ortaya çıkan bir problem ile karşılaşmaktayız. API Gateway ile Microservice yapısındaki programlama dillerinin farklılığından dolayı bu tarz problemler ortaya çıkabilmektedir.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 21.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-21.png)
 
 ## **AuthMatrix**
 
 İncelediğimiz bir web uygulaması için yetki ve grup tanımlamalarını oluşturarak denemeler yapmak gerekmektedir. Tüm yetki şeması simüle edilerek hangi kullanıcının neyi görebildiğini öğrenebiliriz.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 22.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-22.png)
 
 ## **autochrome**
 
 Araştırdığımız sistemde birden fazla kullanıcı ekleyerek denemeler yapmamız gerektiği için kullanabileceğimiz bir diğer faydalı araç da autochrome aracıdır. Bu araç sayesinde istediğiniz kullanıcıları ekleyerek her kullanıcı için ayrı bir pencerede işlemlerinizi yürütebilirsiniz. Bu sayede yaptığınız işlemler birbiriyle karışmayacaktır.
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 23.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-23.png)
 
 autochrome aracı için de buradaki bağlantıdan kurulumu yapabilirsiniz;
 
 [https://github.com/nccgroup/autochrome](https://github.com/nccgroup/autochrome)
 
-![Untitled](0x02 4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled 24.png)
+![Untitled](0x02-4c5ab91a49e44cbe8e5a0b2b2df4bfbd/Untitled-24.png)
 
 Buraya kadar okuduğunuz için teşekkür ederim. Selametle …
 
