@@ -4,7 +4,7 @@
 
 Lab ortamı hakkında genel bilgiler bu kısımda verilmiştir.
 
-![Untitled](Web Security 0x0A Web Security Academy'den Devam E 5d98a1205cb7439db45c8e0570ab118e/Untitled.png)
+![Untitled](Web-Security-0x0A-Web-Security-Academy'den-Devam-E-5d98a1205cb7439db45c8e0570ab118e/Untitled.png)
 
 Lab ortamına eriştiğimizde bizleri bu şekilde bir sayfa karşılamaktadır. Burada ilk baktığımızda UNION base SQL injection tipinde bir açık olabileceğini bilmekteyiz. Çünkü verilerin kesin olarak veritabanından çekilerek sayfada görüntülendiğini görmekteyiz. 
 
