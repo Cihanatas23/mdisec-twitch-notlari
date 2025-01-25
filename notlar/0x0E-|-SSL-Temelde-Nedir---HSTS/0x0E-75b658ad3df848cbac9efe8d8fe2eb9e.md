@@ -4,7 +4,7 @@
 
 Aşağıdaki gibi bir yapı düşünelim. Böyle bir durumda ulaşılmaya çalışılan hedef site ile kullanıcı arasında tüm trafiği dinleyen ve bunları yönlendiren bir ortadaki adam mevcuttur. Kullanıcı burada hedef siteye http ile gitmek istediğinde ortadaki adam tüm trafiği açık bir şekilde görüp bu trafiği hedef siteye iletecektir. Hedef site ise https trafiği beklediğini bildirerek bir cevap dönecektir. Bu cevabı alan ortadaki adam halihazırda tüm trafiğe sahip olduğu için bunu https olarak yeniden hedef siteye iletecektir. Https trafiğine karşılık da hedef site bir cevap dönecektir. Bu cevabı alan ortadaki adam da kullanıcıya istediği cevabı tekrar iletebilecektir. Böyle bir durumda hedef sitede SSL olsa bile kullanıcı henüz SSL ile herhangi bir bağlantı kurmamıştır.
 
-![Untitled](0x0E 75b658ad3df848cbac9efe8d8fe2eb9e/Untitled.png)
+![Untitled](0x0E-75b658ad3df848cbac9efe8d8fe2eb9e/Untitled.png)
 
 Burada iki sorun meydana gelmektedir;
 
@@ -15,7 +15,7 @@ Peki kullanıcımız HTTP yerine HTTPS ile çıkış yaptığı durumda neler ol
 
 Aslında buradaki tüm süreç ve HTTP talepleri Browser tarafından gerçekleşir. HTTPS ile trafiğe çıkıldığında Browser SSL ile konuşmak isteyecektir. Dolayısıyla [x.com](http://x.com) sertifikasını browser’a sunmak zorundadır. Browser da bu sertifikanın doğru olup olmadığını kontrol edecek. Dolayısıyla ortadaki adamın x.com sertifikasını browser’a sunması gerekir. 
 
-![Untitled](0x0E 75b658ad3df848cbac9efe8d8fe2eb9e/Untitled 1.png)
+![Untitled](0x0E-75b658ad3df848cbac9efe8d8fe2eb9e/Untitled-1.png)
 
 Bu noktada ortadaki adam istediği şekilde bir sertifika üretebilir;
 
@@ -31,7 +31,7 @@ Demek ki Browser’ın aldığı sertifikayı doğrulaması gerekmektedir. Bunu 
 
 [X.com](http://X.com) sahibi yeni bir sertifika üretip gerekli ücret karşılığında CA otoritelerine bu sertifikayı imzalatmaktadır. Burada CA tarafından imzalanan sertifikalar da sitenin sunucusuna yüklenir. Tüm tarayıcı hizmetlerinde de (Firefox, Opera, Chrome …) güvendikleri Sertifika Otoritelerinin (CA) listesi bulunmaktadır. Tarayıcılar da kendilerine gelen sertifikaların burada güvendikleri CA tarafından imzalanmış olmasını beklemektedir. 
 
-![Untitled](0x0E 75b658ad3df848cbac9efe8d8fe2eb9e/Untitled 2.png)
+![Untitled](0x0E-75b658ad3df848cbac9efe8d8fe2eb9e/Untitled-2.png)
 
 Peki CA buradaki sertifikaları nasıl imzalamaktadır ? Ortadaki adam da imzalayamaz mı?
 
@@ -50,7 +50,7 @@ Peki CA bu doğrulamayı nasıl yapar?
 
 Yukarıda anlattığımız sistemde ortadaki adamın olmadığını düşünecek olursak kullanıcı yani borowser tarafından gönderilen bir HTTP request’ine cevap olarak hedef siteden gelen response’da HSTS header’ı bulunuyorsa artık bu siteye gidecek olan tüm trafik HTTPS olarak gitmek zorundadır. Browser artık bu bilgiyi kaydeder ve her zaman HTTPS ile gideceğini bilir. 
 
-![Untitled](0x0E 75b658ad3df848cbac9efe8d8fe2eb9e/Untitled 3.png)
+![Untitled](0x0E-75b658ad3df848cbac9efe8d8fe2eb9e/Untitled-3.png)
 
 Siz artık bir siteyi HTTP ile ziyaret ettiğinizde bile eğer daha önce HSTS header’ı kayıtlı ise henüz oraya HTTP ile gitmeden HTTPS ile ulaşmış olursunuz. Browser bunu kaydettiği için 307 internal rediret ile sizi hedefe HTTPS ile ulaştırır. 
 
@@ -68,7 +68,7 @@ Bu listeye eklenebilmeniz için de aşağıdaki gibi bir yapıya sahip olmanız 
 strict-transport-security: max-age=15552000; includeSubDomains; preload
 ```
 
-![Untitled](0x0E 75b658ad3df848cbac9efe8d8fe2eb9e/Untitled 4.png)
+![Untitled](0x0E-75b658ad3df848cbac9efe8d8fe2eb9e/Untitled-4.png)
 
 ## KAYNAKLAR:
 
