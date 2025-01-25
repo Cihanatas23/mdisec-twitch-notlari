@@ -87,7 +87,7 @@ Stack trace:
   thrown in /home/ilker/pentest/deserialization-course/deserialize.php on line 12
 ```
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled.png)
 
 Burada hata almamızın sebebi payload için gerekli olan string ifadeyi yazarken birtakım hatalar yapmamızdan kaynaklanmaktadır. Buradaki ifadenin doğru yazılması için bazı ipuçları ve dikkat edilmesi gereken noktalar vardır.
 
@@ -176,29 +176,29 @@ php deserialize.php
 ben uyandım mdisec
 ```
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 1.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-1.png)
 
 # Lab: Modifying serialized objects
 
 Bu lab ortamında bizden istenen şey Session’da yer alan serialize edilmiş objeyi değiştirerek yetkimizi yükseltmemiz istenmektedir. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 2.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-2.png)
 
 Henüz kullanıcı girişi yapmadığımızda herhangi bir session bilgisi bulunmamaktadır;
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 3.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-3.png)
 
 Bu yüzden öncelikle bize verilen giriş bilgilerini kullanarak giriş yapmalıyız. Bu sayede bizim için session bilgisi de eklenmiş olacaktır. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 4.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-4.png)
 
 Giriş yaptıktan sonra tekrar uygulamamızın anasayfasına geldiğimizde ve bu işlemleri burpsuite aracılığıyla incelediğimizde session bilgisinin eklendiğini görebiliriz.
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 5.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-5.png)
 
 Burada elde edilen session bilgisini öncelikle URL Decode daha sonra da Base64 dedocing yaptığımızda anlamlı bir sonuç görebilliriz.
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 6.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-6.png)
 
 Yukarıda bahsettiğimiz senaryonun aynısı aslında burada simüle edilmiş durumda. “admin” için 0 yerine 1 yazdığımızda yetkimizi yükseltmiş oluyoruz. Artık burpsuite’te bu kısmı repeater aracılığıyla değiştirdikten sonra tekrar base64-encode ve URL-encode işlemlerini gerçekleştirip request’i gönderiyoruz.
 
@@ -214,21 +214,21 @@ Artık elde ettiğimiz bu session bilgisi ile devam etmeliyiz. Burada cookie’n
 
 Eğer firefox’ta mevcut cookie’yi silip yeniden istek atılırken elde ettiğimiz bu session bilgisini eklersek istediğimiz hedefe ulaşmış olacağız. Firefox’ta mevcut session’ı sildikten sonra Intercept açıkken bu şekilde forward ile ilerleyerek istediğimiz sesssion bilgisini ekliyoruz. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 7.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-7.png)
 
 Daha sonra da uygulamamızı kontrol ettiğimizde admin paneli özelliğinin açıldığını görebilmekteyiz. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 8.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-8.png)
 
 Cookie’leri sildiğimiz için bundan sonraki işlemlerde de Request’lerde session bilgisini kendimiz eklemeliyiz. 
 
 Artık burada carlos kullanıcısını silebildiğimizi görmekteyiz.
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 9.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-9.png)
 
 Artık bu sayede başarıyla çözmüş olduk…
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 10.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-10.png)
 
 Firefox tarayıcısında Cookie ile ilgili işlemleri yönetebilmek için buradaki eklentiyi kurabilirsiniz: [Cookie Quick Manager Firefox Extension](https://addons.mozilla.org/en-US/firefox/addon/cookie-quick-manager/)
 
@@ -236,7 +236,7 @@ Firefox tarayıcısında Cookie ile ilgili işlemleri yönetebilmek için burada
 
 Sıradaki lab ortamında da administrator hesabını ele geçirmemiz istenmektedir. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 11.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-11.png)
 
 Bu lab için de session bilgisini elde etmek için sisteme verilen giriş bilgileriyle giriyoruz. Ardından session bilgisini decode ettiğimizde ortaya bu sonuç çıkmaktadır. 
 
@@ -244,7 +244,7 @@ Bu lab için de session bilgisini elde etmek için sisteme verilen giriş bilgil
 O:4:"User":2:{s:8:"username";s:6:"wiener";s:12:"access_token";s:32:"nx19tbfamwu23nmwavajsa1m796exwqm";}
 ```
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 12.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-12.png)
 
 Bu noktada şu kaynak da faydalı olacaktır: **[PHP Type Juggling Vulnerabilities](https://medium.com/swlh/php-type-juggling-vulnerabilities-3e28c4ed5c09)**
 
@@ -293,19 +293,19 @@ Tzo0OiJVc2VyIjoyOntzOjg6InVzZXJuYW1lIjtzOjY6IndpZW5lciI7czoxMjoiYWNjZXNzX3Rva2Vu
 
 Bu işlemi burpsuite tarafına taşıdığımızda artık elde ettiğimiz yeni session bilgisi ile ilerleyince admin panelinin geldiğini görebilmekteyiz…
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 13.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-13.png)
 
 Daha önce kurduğumuz firefox eklentisi ile cookie bilgisini güncelleyip işlemlere devam edelim. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 14.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-14.png)
 
 Bizden istenen şeyi yaparak Carlos kullanıcısını siliyoruz. 
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 15.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-15.png)
 
 Ve görev başarıyla tamamlandı…
 
-![Untitled](0x0C Deserialization Zafiyetlerini Anlamak Episode 78d04d91baaa44d0959227e5c55cbc59/Untitled 16.png)
+![Untitled](0x0C-Deserialization-Zafiyetlerini-Anlamak-Episode-78d04d91baaa44d0959227e5c55cbc59/Untitled-16.png)
 
 ### Oku: [Drupal Coder Zafiyet Analizi & Metasploit Modülü Geliştirilmesi](https://www.mehmetince.net/drupal-coder-zafiyet-analizi-metasploit-modulu-gelistirilmesi/)
 
